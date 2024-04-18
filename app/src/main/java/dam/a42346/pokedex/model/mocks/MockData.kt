@@ -1,6 +1,7 @@
 package dam.a42346.pokedex.model.mocks
 
 import dam.a42346.pokedex.R
+import dam.a42346.pokedex.model.Pokemon
 import dam.a42346.pokedex.model.PokemonRegion
 import dam.a42346.pokedex.model.PokemonType
 
@@ -31,37 +32,40 @@ object MockData {
         PokemonRegion(8, "Galar", R.drawable.bg_galar, R.drawable.pk_galar),
     )
 
-    var pokemonTypeMock= listOf<PokemonType>(
-        PokemonType(1,"water", R.drawable.water, R.color.water),
-        PokemonType(2,"fire", R.drawable.fire, R.color.fire),
-        PokemonType(3,"bug", R.drawable.bug, R.color.bug),
-        PokemonType(4,"ghost", R.drawable.ghost, R.color.ghost),
-        PokemonType(5,"grass", R.drawable.grass, R.color.grass),
-        PokemonType(6,"ground", R.drawable.ground, R.color.ground),
-        PokemonType(7,"rock", R.drawable.rock, R.color.rock),
-        PokemonType(8,"dark", R.drawable.dark, R.color.dark),
-        PokemonType(9,"dragon", R.drawable.dragon, R.color.dragon),
-        PokemonType(10,"electric", R.drawable.electric, R.color.electric),
-        PokemonType(11,"fairy", R.drawable.fairy, R.color.fairy),
-        PokemonType(12,"fighting", R.drawable.fighting, R.color.fighting),
-        PokemonType(13,"ice", R.drawable.ice, R.color.ice),
-        PokemonType(14,"normal", R.drawable.normal, R.color.normal),
-        PokemonType(15,"psychic", R.drawable.psychic, R.color.psychic),
-        PokemonType(16,"flying", R.drawable.flying, R.color.flying),
-        PokemonType(17,"poison", R.drawable.poison, R.color.poison),
-        PokemonType(18,"steel", R.drawable.steel, R.color.steel)
+    var pokemonTypeMock = listOf<PokemonType>(
+        PokemonType(1, "water", R.drawable.water, R.color.water),
+        PokemonType(2, "fire", R.drawable.fire, R.color.fire),
+        PokemonType(3, "bug", R.drawable.bug, R.color.bug),
+        PokemonType(4, "ghost", R.drawable.ghost, R.color.ghost),
+        PokemonType(5, "grass", R.drawable.grass, R.color.grass),
+        PokemonType(6, "ground", R.drawable.ground, R.color.ground),
+        PokemonType(7, "rock", R.drawable.rock, R.color.rock),
+        PokemonType(8, "dark", R.drawable.dark, R.color.dark),
+        PokemonType(9, "dragon", R.drawable.dragon, R.color.dragon),
+        PokemonType(10, "electric", R.drawable.electric, R.color.electric),
+        PokemonType(11, "fairy", R.drawable.fairy, R.color.fairy),
+        PokemonType(12, "fighting", R.drawable.fighting, R.color.fighting),
+        PokemonType(13, "ice", R.drawable.ice, R.color.ice),
+        PokemonType(14, "normal", R.drawable.normal, R.color.normal),
+        PokemonType(15, "psychic", R.drawable.psychic, R.color.psychic),
+        PokemonType(16, "flying", R.drawable.flying, R.color.flying),
+        PokemonType(17, "poison", R.drawable.poison, R.color.poison),
+        PokemonType(18, "steel", R.drawable.steel, R.color.steel)
     )
 
-    /*var pokemons = (1..POKEMONS_SIZE).map {
-        Pokemon(it,
+    /*
+    var pokemons = (1..POKEMONS_SIZE).map {
+        Pokemon(
+            it,
             "bulbasaur",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/${it}.png",
             regions.random(), pokemonTypeMock.asSequence().shuffled().take(2).toList()
         )
-    }*/
-
-    /* var pokemons = listOf(
+    }
+    */
+//}
+     var pokemons = listOf(
          Pokemon(1,
              "bulbasaur",
              "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
@@ -132,7 +136,7 @@ object MockData {
                      "/sprites/pokemon/other/official-artwork/41.png"),
 
 
-         )*/
+         )
 
     /*  var pokemonDetail = pokemons.map {
           PokemonDetail(

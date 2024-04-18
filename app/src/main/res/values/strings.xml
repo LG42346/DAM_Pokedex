@@ -41,4 +41,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_regions">RegionsActivity</string>
     <string name="title_activity_team">TeamActivity</string>
+    <string name="title_activity_pokemonlist">Pokemonlist</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_pokemon_list">PokemonListActivity</string>
 </resources>
