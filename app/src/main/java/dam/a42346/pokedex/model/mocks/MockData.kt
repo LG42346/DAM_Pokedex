@@ -2,8 +2,13 @@ package dam.a42346.pokedex.model.mocks
 
 import dam.a42346.pokedex.R
 import dam.a42346.pokedex.model.Pokemon
+import dam.a42346.pokedex.model.PokemonDetail
+import dam.a42346.pokedex.model.PokemonEvolution
 import dam.a42346.pokedex.model.PokemonRegion
+import dam.a42346.pokedex.model.PokemonStats
 import dam.a42346.pokedex.model.PokemonType
+import kotlin.math.roundToInt
+import kotlin.random.Random
 
 object MockData {
 
@@ -64,7 +69,7 @@ object MockData {
         )
     }
     */
-//}
+
      var pokemons = listOf(
          Pokemon(1,
              "bulbasaur",
@@ -75,7 +80,7 @@ object MockData {
          Pokemon(4,
              "charmander",
              "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
-                     "/sprites/pokemon/other/official-artwork/3.png"
+                     "/sprites/pokemon/other/official-artwork/4.png"
          ),
          Pokemon(6,
              "squirtle",
@@ -97,7 +102,7 @@ object MockData {
          Pokemon(19,
              "rattata",
              "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
-                     "/sprites/pokemon/other/official-artwork/19.png"),
+                     "/sprites/pokemon/other/official-artwork/132.png"),
          Pokemon(21,
              "spearow",
              "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
@@ -138,7 +143,7 @@ object MockData {
 
          )
 
-    /*  var pokemonDetail = pokemons.map {
+      var pokemonDetail = pokemons.map {
           PokemonDetail(
               it,
               pokemonDetailDescription,
@@ -151,5 +156,5 @@ object MockData {
                       0,"", 0, "")
               }.take(Random.nextInt(1,3)).toList()
           )
-      }*/
+      }
 }

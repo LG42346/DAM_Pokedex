@@ -1,6 +1,7 @@
 package dam.a42346.pokedex.ui
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.util.Log
 import android.view.LayoutInflater
@@ -81,6 +82,12 @@ class PokemonAdapter(
         holder.pkIDTextView.text = buildString {
             append("#")
             append(pokemon.id)
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, PokemonDetailActivity::class.java)
+            intent.putExtra("pokemon", pokemon)
+            context.startActivity(intent)
         }
     }
 
