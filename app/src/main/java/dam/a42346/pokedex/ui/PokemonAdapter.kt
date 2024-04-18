@@ -18,7 +18,6 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target // conflict with TARGET annotation
 import dam.a42346.pokedex.R
 import dam.a42346.pokedex.model.Pokemon
-import dam.a42346.pokedex.model.PokemonRegion
 
 class PokemonAdapter(
     private val pokemonList: List<Pokemon>,
@@ -39,7 +38,7 @@ class PokemonAdapter(
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PokemonAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pokemon = pokemonList[position]
         Glide.with(holder.pkImageView.context)
             .asBitmap()

@@ -12,7 +12,8 @@ class PokemonListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_pokemon_list)
-        var listView = findViewById<RecyclerView>(R.id.pksRecyclerView)
+        //var listView = findViewById<RecyclerView>(R.id.pksRecyclerView)
+        val listView = findViewById<RecyclerView>(R.id.pksRecyclerView)
         listView.adapter = PokemonAdapter(pokemonList = MockData.pokemons, context = this)
     }
 }

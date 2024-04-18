@@ -1,6 +1,7 @@
 package dam.a42346.pokedex.ui
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,12 @@ class RegionAdapter(
         holder.regionSubtitleTextView.text = buildString {
             append(region.id.toString())
             append(" Generation")
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, PokemonListActivity::class.java)
+            intent.putExtra("region", region)
+            context.startActivity(intent)
         }
     }
 
