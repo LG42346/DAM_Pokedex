@@ -5,14 +5,12 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+//import androidx.navigation.findNavController
+//import androidx.navigation.ui.AppBarConfiguration
+//import androidx.navigation.ui.setupActionBarWithNavController
+//import androidx.navigation.ui.setupWithNavController
 import dam.a42346.pokedex.R
-import dam.a42346.pokedex.databinding.ActivityBottomNavBinding
-import dam.a42346.pokedex.ui.ui.RegionsActivity
-
+//import dam.a42346.pokedex.databinding.ActivityBottomNavBinding
 abstract class BottomNavActivity : AppCompatActivity() {
     lateinit var navigationView: BottomNavigationView
 
