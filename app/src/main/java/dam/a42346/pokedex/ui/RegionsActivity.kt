@@ -9,7 +9,8 @@ class RegionsActivity : BottomNavActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var listView = findViewById<RecyclerView>(R.id.regionsRecyclerView)
+        //var listView = findViewById<RecyclerView>(R.id.regionsRecyclerView)
+        val listView = findViewById<RecyclerView>(R.id.regionsRecyclerView)
         listView.adapter = RegionAdapter(pkRegionList = MockData.regions, context = this)
     }
 
