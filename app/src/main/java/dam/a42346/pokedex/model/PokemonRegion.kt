@@ -3,7 +3,6 @@ package dam.a42346.pokedex.model
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
 @kotlinx.parcelize.Parcelize
-
 data class PokemonRegion(
     var id: Int,
     var name: String,

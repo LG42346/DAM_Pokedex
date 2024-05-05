@@ -5,30 +5,28 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-//import androidx.navigation.findNavController
-//import androidx.navigation.ui.AppBarConfiguration
-//import androidx.navigation.ui.setupActionBarWithNavController
-//import androidx.navigation.ui.setupWithNavController
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import dam.a42346.pokedex.R
-//import dam.a42346.pokedex.databinding.ActivityBottomNavBinding
 abstract class BottomNavActivity : AppCompatActivity() {
     lateinit var navigationView: BottomNavigationView
+    //lateinit var binding : ViewBinding
+    lateinit var binding : ViewDataBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.binding = DataBindingUtil.setContentView(this, contentViewId)
         enableEdgeToEdge()
-        setContentView(contentViewId)
+        //setContentView(contentViewId)
         navigationView = findViewById(R.id.navigation)
         navigationView.itemIconTintList = null
         navigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.navigation_regions -> {
-                    // Navigate to RegionsActivity
                     startActivity(Intent(this, RegionsActivity::class.java))
                     true
                 }
                 R.id.navigation_teams -> {
-                    // Navigate to TeamActivity
                     startActivity(Intent(this, TeamsActivity::class.java))
                     true
                 }

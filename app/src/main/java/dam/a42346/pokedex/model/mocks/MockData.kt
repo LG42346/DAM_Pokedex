@@ -147,7 +147,7 @@ object MockData {
           PokemonDetail(
               it,
               pokemonDetailDescription,
-              pokemonTypeMock.asSequence().shuffled().take(1).toList(),
+              pokemonTypeMock.asSequence().shuffled().take(2).toList(),
               ( Random.nextDouble(20.0,50.0) * 100.0).roundToInt() / 100.0,
               (Random.nextDouble(0.20, 2.0) * 100.0).roundToInt() / 100.0,
               PokemonStats(),

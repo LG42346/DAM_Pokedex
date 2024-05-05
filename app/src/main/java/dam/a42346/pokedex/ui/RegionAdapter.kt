@@ -9,20 +9,33 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import dam.a42346.pokedex.R
+import dam.a42346.pokedex.databinding.ItemRegionBinding
 import dam.a42346.pokedex.model.PokemonRegion
+
+fun interface OnItemClickedListener {
+    fun invoke(region: PokemonRegion)
+}
 
 class RegionAdapter(
     private val pkRegionList: List<PokemonRegion>,
-    private val context: Context
+    private val context: Context,
+    private val itemClickedListener: OnItemClickedListener
+
 ) : RecyclerView.Adapter<RegionAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val regionItemBinding = ItemRegionBinding.bind(itemView)
+        fun bindView(region: PokemonRegion, itemClickedListener: OnItemClickedListener?) {
+            regionItemBinding.region = region
+            itemView.setOnClickListener{
+                itemClickedListener?.invoke(region)
+            }
+        }
         val bgImageView = itemView.findViewById<AppCompatImageView>(R.id.regionBgImage)
         val startersImageView = itemView.findViewById<AppCompatImageView>(R.id.regionStartersImageView)
         val regionTitleTextView = itemView.findViewById<AppCompatTextView>(R.id.regionNameTextView)
         val regionSubtitleTextView = itemView.findViewById<AppCompatTextView>(R.id.regionIdTextView)
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -32,6 +45,7 @@ class RegionAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val region = pkRegionList[position]
+        holder.bindView(region, itemClickedListener)
         holder.bgImageView.setImageResource(region.bg)
         holder.startersImageView.setImageResource(region.starters)
         holder.regionTitleTextView.text = region.name

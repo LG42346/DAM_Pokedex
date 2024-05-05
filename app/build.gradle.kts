@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id ("kotlin-parcelize")
+
+    id("org.jetbrains.kotlin.kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -35,12 +37,19 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        dataBinding = true
         viewBinding = true
     }
 }
 
 dependencies {
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    //implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.glide)
+    //implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    //implementation("androidx.activity:activity-ktx:1.8.2")
+    //implementation("androidx.activity:activity-ktx:1.9.0")
+    implementation(libs.activity.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
