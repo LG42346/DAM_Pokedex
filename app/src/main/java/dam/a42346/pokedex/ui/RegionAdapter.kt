@@ -2,6 +2,7 @@ package dam.a42346.pokedex.ui
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,52 +13,40 @@ import dam.a42346.pokedex.R
 import dam.a42346.pokedex.databinding.ItemRegionBinding
 import dam.a42346.pokedex.model.PokemonRegion
 
-fun interface OnItemClickedListener {
-    fun invoke(region: PokemonRegion)
-}
-
 class RegionAdapter(
     private val pkRegionList: List<PokemonRegion>,
     private val context: Context,
-    private val itemClickedListener: OnItemClickedListener
-
 ) : RecyclerView.Adapter<RegionAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val regionItemBinding = ItemRegionBinding.bind(itemView)
-        fun bindView(region: PokemonRegion, itemClickedListener: OnItemClickedListener?) {
-            regionItemBinding.region = region
-            itemView.setOnClickListener{
-                itemClickedListener?.invoke(region)
-            }
-        }
         val bgImageView = itemView.findViewById<AppCompatImageView>(R.id.regionBgImage)
         val startersImageView = itemView.findViewById<AppCompatImageView>(R.id.regionStartersImageView)
         val regionTitleTextView = itemView.findViewById<AppCompatTextView>(R.id.regionNameTextView)
         val regionSubtitleTextView = itemView.findViewById<AppCompatTextView>(R.id.regionIdTextView)
+
+        private val regionItemBinding = ItemRegionBinding.bind(itemView)
+        fun bindView(region: PokemonRegion) {
+            regionItemBinding.region = region
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.item_region, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_region, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val region = pkRegionList[position]
-        holder.bindView(region, itemClickedListener)
+        holder.bindView(region)
         holder.bgImageView.setImageResource(region.bg)
         holder.startersImageView.setImageResource(region.starters)
         holder.regionTitleTextView.text = region.name
-        //holder.regionSubtitleTextView.text = region.id.toString() + " Generation"
         holder.regionSubtitleTextView.text = buildString {
             append(region.id.toString())
-            append(" Generation")
+            append("º Generation")
         }
-
         holder.itemView.setOnClickListener {
             val intent = Intent(context, PokemonListActivity::class.java)
-            intent.putExtra("region", region)
+            intent.putExtra("regionId", region.id)
             context.startActivity(intent)
         }
     }

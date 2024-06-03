@@ -5,9 +5,12 @@ data class PokemonDetail(
     //var pokemon: String,
     var description: String,
     var types: List<PokemonType>,
-    var height: Double,
-    var weight: Double,
+    //var types: List<String>,
+    var height: Int,
+    var weight: Int,
 
-    var stats: PokemonStats,
-    val evolutions: List<PokemonEvolution>,
+    //var stats: PokemonStats,
+    //var stats: List<String>,
+    var stats: List<PokemonStat>
+    //val evolutions: List<PokemonEvolution>,
 )

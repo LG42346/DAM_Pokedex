@@ -14,9 +14,6 @@
             android:id="@+id/regionsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="95dp"
-            app:layoutManager="LinearLayoutManager"
             tools:listitem="@layout/item_region" />
 
         <include

@@ -21,7 +21,7 @@ import dam.a42346.pokedex.R
 import dam.a42346.pokedex.model.Pokemon
 
 class PokemonAdapter(
-    private val pokemonList: List<Pokemon>,
+    var pokemonList: List<Pokemon>,
     private val context: Context
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
@@ -32,11 +32,8 @@ class PokemonAdapter(
         val pkIDTextView = itemView.findViewById<AppCompatTextView>(R.id.pkID)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.item_pokemon, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_pokemon, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -52,7 +49,6 @@ class PokemonAdapter(
                     target: Target<Bitmap>,
                     isFirstResource: Boolean
                 ): Boolean {
-
                     Log.d("TAG", e?.message.toString())
                     return false
                 }
@@ -65,11 +61,7 @@ class PokemonAdapter(
                     p4: Boolean
                 ): Boolean {
                     Log.d("TAG", "OnResourceReady")
-                    //if (resource != null) {
-                    val p: Palette = Palette.from(resource).generate()
-
-                    //val rgb = p?.lightMutedSwatch?.rgb
-                    val rgb = p.lightMutedSwatch?.rgb
+                    val rgb = Palette.from(resource).generate().lightMutedSwatch?.rgb
                     if (rgb != null) {
                         holder.cardView.setCardBackgroundColor(rgb)
                     }
@@ -78,12 +70,10 @@ class PokemonAdapter(
             })
             .into(holder.pkImageView)
         holder.pkNameTextView.text = pokemon.name
-        //holder.pkIDTextView.text = "#" + pokemon.id
         holder.pkIDTextView.text = buildString {
             append("#")
             append(pokemon.id)
         }
-
         holder.itemView.setOnClickListener {
             val intent = Intent(context, PokemonDetailActivity::class.java)
             intent.putExtra("pokemon", pokemon)

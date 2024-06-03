@@ -1,18 +1,21 @@
 package dam.a42346.pokedex.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import dam.a42346.pokedex.R
 import dam.a42346.pokedex.model.Pokemon
-import dam.a42346.pokedex.model.mocks.MockData
 
 class PokemonDetailActivity : AppCompatActivity() {
+    private lateinit var pokemonDetailViewModel: PokemonDetailViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,46 +23,56 @@ class PokemonDetailActivity : AppCompatActivity() {
 
         val pokemon = intent.getParcelableExtra<Pokemon>("pokemon")
 
-        //val pokemonDetail = MockData.pokemonDetail.find { it.pokemon.id == (pokemon?.id ?: 150) }
-        val pokemonDetail = MockData.pokemonDetail.find { it.pokemon.id == (pokemon?.id ?: 19) }
+        pokemonDetailViewModel = ViewModelProvider(this)[PokemonDetailViewModel::class.java]
+        pokemonDetailViewModel.fetchPokemonDetailById(pokemon?.id ?: 132)
+        pokemonDetailViewModel.pokemonDetail.observe(this) { pokemonDetail ->
+            Log.d("PokemonDetailActivity", "pokemonDetail: $pokemonDetail")
+            val pokemonNameTextView = findViewById<TextView>(R.id.pokemonNameTextView)
+            val pokemonImageView = findViewById<ImageView>(R.id.pokemonImageView)
+            val pokemonDescriptionTextView = findViewById<TextView>(R.id.pokemonDescriptionTextView)
+            val pokemonHeightTextView = findViewById<TextView>(R.id.pokemonHeightTextView)
+            val pokemonWeightTextView = findViewById<TextView>(R.id.pokemonWeightTextView)
+            val pokemonTypeTextView = findViewById<TextView>(R.id.pokemonTypesTextView)
 
-        val pokemonNameTextView = findViewById<TextView>(R.id.pokemonNameTextView)
-        val pokemonImageView = findViewById<ImageView>(R.id.pokemonImageView)
-        val pokemonDescriptionTextView = findViewById<TextView>(R.id.pokemonDescriptionTextView)
-        val pokemonHeightTextView = findViewById<TextView>(R.id.pokemonHeightTextView)
-        val pokemonWeightTextView = findViewById<TextView>(R.id.pokemonWeightTextView)
+            pokemonNameTextView.text = pokemon?.name ?: "Unknown"
+            //pokemonDescriptionTextView.text = pkDetail?.description ?: "No description available"
+            pokemonHeightTextView.text = pokemonDetail?.height?.toString()
+            pokemonWeightTextView.text =  pokemonDetail?.weight.toString()
+            pokemonTypeTextView.text = pokemonDetail?.types?.joinToString(", ") { it.name } ?: "Unknown"
+            Glide.with(this)
+                .load(pokemon?.imageUrl)
+                .into(pokemonImageView)
 
-        pokemonNameTextView.text = pokemonDetail?.pokemon?.name
-        Glide.with(this)
-            .load(pokemonDetail?.pokemon?.imageUrl)
-            .into(pokemonImageView)
-        pokemonDescriptionTextView.text = pokemonDetail?.description
-        pokemonHeightTextView.text = pokemonDetail?.height.toString()
-        pokemonWeightTextView.text = pokemonDetail?.weight.toString()
 
-        val pokemonTypesTextView = findViewById<TextView>(R.id.pokemonTypesTextView)
-        //pokemonTypesTextView.text = pokemonDetail?.types?.joinToString(", ") { it.name }
+            val ll = findViewById<LinearLayout>(R.id.detailLinearLayout)
+            //val typesGridLayout = findViewById<GridLayout>(R.id.grid)
 
-        pokemonDetail?.types?.forEach { type ->
-            val typeTextView = TextView(this)
-            typeTextView.text = type.name
-            typeTextView.textSize = 16f
-            typeTextView.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
+            pokemonDetailViewModel.pokemonDetail.observe(this) { pkDetail ->
+                pkDetail?.types?.forEach { type ->
+                    val typeName = type.name
+                    val colorId = resources.getIdentifier(typeName, "color", packageName)
+                    val drawableId = resources.getIdentifier(typeName, "drawable", packageName)
 
-            typeTextView.setBackgroundResource(R.drawable.rounded_corners)
-            typeTextView.setTextColor(ContextCompat.getColor(this, type.color))
-            val drawable = ContextCompat.getDrawable(this, type.icon)
-            drawable?.setBounds(0, 0, typeTextView.textSize.toInt(), typeTextView.textSize.toInt())
-            typeTextView.setCompoundDrawables(drawable, null, null, null)
-            //typeTextView.setCompoundDrawablesWithIntrinsicBounds(type.icon, 0, 0, 0)
-            typeTextView.compoundDrawablePadding = 1 // Add padding between the drawable and the text
+                    val typesTextView = TextView(this).apply {
+                        text = typeName
+                        setTextColor(ContextCompat.getColor(this@PokemonDetailActivity, colorId))
+                    }
+                    typesTextView.measure(0, 0) // Force measurement of the TextView
+                    val drawable = ContextCompat.getDrawable(this, drawableId)?.apply {
+                        setBounds(0, 0, typesTextView.measuredHeight, typesTextView.measuredHeight) // Set the bounds to match the text height
+                    }
+                    typesTextView.setCompoundDrawables(drawable, null, null, null)
+                    ll.addView(typesTextView)
+                }
 
-            val pokemonTypesLinearLayout = findViewById<LinearLayout>(R.id.pokemonTypesLinearLayout)
-            pokemonTypesLinearLayout.addView(typeTextView)
+                pokemonDetail?.stats?.forEach { stat ->
+                    val textView = TextView(this).apply {
+                        val statsKV = "${stat.statName}: ${stat.statValue}"
+                        text = statsKV
+                    }
+                    ll.addView(textView)
+                }
+            }
         }
-
     }
 }

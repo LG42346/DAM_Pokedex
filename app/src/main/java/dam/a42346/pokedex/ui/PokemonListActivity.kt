@@ -1,20 +1,29 @@
 package dam.a42346.pokedex.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import dam.a42346.pokedex.R
-import dam.a42346.pokedex.model.mocks.MockData
 
 class PokemonListActivity : AppCompatActivity() {
+    private lateinit var viewModel: PokemonListViewModel
+    private val pokemonAdapter = PokemonAdapter(pokemonList = emptyList(), context = this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_pokemon_list)
-        //var listView = findViewById<RecyclerView>(R.id.pksRecyclerView)
-        val listView = findViewById<RecyclerView>(R.id.pksRecyclerView)
-        listView.adapter = PokemonAdapter(pokemonList = MockData.pokemons, context = this)
+
+        findViewById<RecyclerView>(R.id.pksRecyclerView).adapter = pokemonAdapter
+
+        viewModel = ViewModelProvider(this)[PokemonListViewModel::class.java]
+        viewModel.fetchPokemonByRegionId(intent.getIntExtra("regionId", 2))
+        viewModel.pokemons.observe(this) { pokemons ->
+            pokemons?.let {
+                pokemonAdapter.pokemonList = it
+                pokemonAdapter.notifyDataSetChanged()
+            }
+        }
     }
 }

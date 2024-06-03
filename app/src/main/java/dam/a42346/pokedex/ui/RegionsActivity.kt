@@ -2,7 +2,9 @@ package dam.a42346.pokedex.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dam.a42346.pokedex.R
 import dam.a42346.pokedex.databinding.ActivityRegionsBinding
@@ -14,32 +16,15 @@ class RegionsActivity : BottomNavActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val regionBinding = binding as ActivityRegionsBinding
-
-        //var listView = findViewById<RecyclerView>(R.id.regionsRecyclerView)
-        val listView = findViewById<RecyclerView>(R.id.regionsRecyclerView)
-        //listView.adapter = RegionAdapter(pkRegionList = MockData.regions, context = this)
-
+        val listView = regionBinding.regionsRecyclerView
+        listView.layoutManager = LinearLayoutManager(this)
         viewModel.regions.observe(this) {
             listView.adapter = it?.let { it1 ->
                 RegionAdapter(
                     pkRegionList = it1,
-                    //...,
                     context = this
-                ) { region ->
-                    val intent = Intent(this@RegionsActivity, PokemonListActivity::class.java)
-                    intent.putExtra("region", region)
-                    startActivity(intent)
-                }
-                /*
-            itemClickedListener = OnItemClickedListener { region ->
-                val intent = Intent(this, PokemonListActivity::class.java)
-                //intent.putExtra("region", region)
-                //startActivity(intent)
-            }
-            */
-
+                )
             }
         }
         viewModel.fetchRegions()

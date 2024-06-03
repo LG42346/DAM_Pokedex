@@ -1,3 +1,4 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -43,6 +44,16 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
+    implementation(libs.moshi)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+    kapt(libs.moshi.kotlin.codegen)
+
     //implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation(libs.glide)
     //implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
@@ -60,6 +71,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.palette.ktx)
+    implementation(libs.androidx.room.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,42 +1,9 @@
 package dam.a42346.pokedex.model.mocks
 
 import dam.a42346.pokedex.R
-import dam.a42346.pokedex.model.Pokemon
-import dam.a42346.pokedex.model.PokemonDetail
-import dam.a42346.pokedex.model.PokemonEvolution
-import dam.a42346.pokedex.model.PokemonRegion
-import dam.a42346.pokedex.model.PokemonStats
 import dam.a42346.pokedex.model.PokemonType
-import kotlin.math.roundToInt
-import kotlin.random.Random
 
 object MockData {
-
-    private val POKEMONS_SIZE = 100
-
-    private var pokemonDetailDescription: String = "Pokem ipsum dolor " +
-            "sit amet Crustle Grotle" +
-            " Dragonair Palkia Shellder Terrakion. " +
-            "Hive Badge Pokeball Spinda Seedot James Vullaby " +
-            "Helix Fossil. Water Gun Professor Oak Marowak Spearow " +
-            "Dunsparce Chimchar Nidorino." +
-            " Silver Azumarill Tyranitar Trubbish " +
-            "Fighting sunt in culpa qui officia Mothim. " +
-            "Celadon City Mantine Clefable Piplup Scizor " +
-            "excepteur sint occaecat cupidatat non proident Terrakion."
-
-
-    var regions = listOf<PokemonRegion>(
-        PokemonRegion(1, "Kanto", R.drawable.bg_kanto, R.drawable.pk_kanto),
-        PokemonRegion(2, "Johto", R.drawable.bg_johto, R.drawable.pk_johto),
-        PokemonRegion(3, "Hoenn", R.drawable.bg_hoenn, R.drawable.pk_hoenn),
-        PokemonRegion(4, "Sinnoh", R.drawable.bg_sinnoh, R.drawable.pk_sinnoh),
-        PokemonRegion(5, "Unova", R.drawable.bg_unova, R.drawable.pk_unova),
-        PokemonRegion(6, "Kalos", R.drawable.bg_kalos, R.drawable.pk_kalos),
-        PokemonRegion(7, "Alola", R.drawable.bg_alola, R.drawable.pk_alola),
-        PokemonRegion(8, "Galar", R.drawable.bg_galar, R.drawable.pk_galar),
-    )
-
     var pokemonTypeMock = listOf<PokemonType>(
         PokemonType(1, "water", R.drawable.water, R.color.water),
         PokemonType(2, "fire", R.drawable.fire, R.color.fire),
@@ -55,10 +22,36 @@ object MockData {
         PokemonType(15, "psychic", R.drawable.psychic, R.color.psychic),
         PokemonType(16, "flying", R.drawable.flying, R.color.flying),
         PokemonType(17, "poison", R.drawable.poison, R.color.poison),
-        PokemonType(18, "steel", R.drawable.steel, R.color.steel)
+        PokemonType(18, "steel", R.drawable.steel, R.color.steel))
+    /*
+
+    private val POKEMONS_SIZE = 100
+
+    private var pokemonDetailDescription: String = "Pokem ipsum dolor " +
+            "sit amet Crustle Grotle" +
+            " Dragonair Palkia Shellder Terrakion. " +
+            "Hive Badge Pokeball Spinda Seedot James Vullaby " +
+            "Helix Fossil. Water Gun Professor Oak Marowak Spearow " +
+            "Dunsparce Chimchar Nidorino." +
+            " Silver Azumarill Tyranitar Trubbish " +
+            "Fighting sunt in culpa qui officia Mothim. " +
+            "Celadon City Mantine Clefable Piplup Scizor " +
+            "excepteur sint occaecat cupidatat non proident Terrakion."
+
+    var regions = listOf<PokemonRegion>(
+        PokemonRegion(1, "Kanto", R.drawable.bg_kanto, R.drawable.pk_kanto),
+        PokemonRegion(2, "Johto", R.drawable.bg_johto, R.drawable.pk_johto),
+        PokemonRegion(3, "Hoenn", R.drawable.bg_hoenn, R.drawable.pk_hoenn),
+        PokemonRegion(4, "Sinnoh", R.drawable.bg_sinnoh, R.drawable.pk_sinnoh),
+        PokemonRegion(5, "Unova", R.drawable.bg_unova, R.drawable.pk_unova),
+        PokemonRegion(6, "Kalos", R.drawable.bg_kalos, R.drawable.pk_kalos),
+        PokemonRegion(7, "Alola", R.drawable.bg_alola, R.drawable.pk_alola),
+        PokemonRegion(8, "Galar", R.drawable.bg_galar, R.drawable.pk_galar),
     )
 
-    /*
+
+    )
+
     var pokemons = (1..POKEMONS_SIZE).map {
         Pokemon(
             it,
@@ -68,7 +61,6 @@ object MockData {
             regions.random(), pokemonTypeMock.asSequence().shuffled().take(2).toList()
         )
     }
-    */
 
      var pokemons = listOf(
          Pokemon(1,
@@ -142,7 +134,6 @@ object MockData {
 
 
          )
-
       var pokemonDetail = pokemons.map {
           PokemonDetail(
               it,
@@ -157,4 +148,5 @@ object MockData {
               }.take(Random.nextInt(1,3)).toList()
           )
       }
+     */
 }
