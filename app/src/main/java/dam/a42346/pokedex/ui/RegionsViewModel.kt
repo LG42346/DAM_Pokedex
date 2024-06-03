@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dam.a42346.pokedex.R
+import dam.a42346.pokedex.data.RegionRepository
 import dam.a42346.pokedex.model.PokemonRegion
 import dam.a42346.pokedex.model.mocks.MockData
 import dam.a42346.pokedex.model.network.NetworkModule
@@ -18,8 +19,14 @@ class RegionsViewModel : ViewModel() {
     val regions: LiveData<List<PokemonRegion>?>
         get() = _regions
 
+    private lateinit var _repository: RegionRepository
+    fun initViewMode(repository: RegionRepository) {
+        _repository = repository
+    }
     fun fetchRegions() {
         viewModelScope.launch(Dispatchers.Default) {
+            val regionsList = _repository.getRegions()
+            /*
             val response = NetworkModule.client.fetchRegionList()
             val regionsList = response.results?.map {
                 val regexToGetId = "/([^/]+)/?\$".toRegex()
@@ -29,7 +36,9 @@ class RegionsViewModel : ViewModel() {
                 val regionStarters = getStartersDrawable(regionName)
                 PokemonRegion(regionId?.toInt() ?: 0, regionName, regionDrawable, regionStarters)
             }
-            _regions.postValue(regionsList)
+
+             */
+            _regions.postValue(regionsList.value)
         }
     }
 

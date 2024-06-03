@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dam.a42346.pokedex.data.PokemonRepository
 import dam.a42346.pokedex.model.Pokemon
+import dam.a42346.pokedex.model.PokemonRegion
 import dam.a42346.pokedex.model.network.NetworkModule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,6 +15,18 @@ class PokemonListViewModel : ViewModel() {
     private val _pokemons = MutableLiveData<List<Pokemon>?>()
     val pokemons: LiveData<List<Pokemon>?>
         get() = _pokemons
+
+    private lateinit var _repository: PokemonRepository
+    fun initViewMode(repository: PokemonRepository) {
+        _repository = repository
+    }
+
+    fun fetchPokemons(regionId : Int) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val pkList = _repository.getPokemonsByRegion(regionId)
+            _pokemons.postValue(pkList.value)
+        }
+    }
 
     fun fetchPokemonByRegionId(regionId: Int) {
         viewModelScope.launch(Dispatchers.Default) {

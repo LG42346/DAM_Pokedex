@@ -8,17 +8,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dam.a42346.pokedex.R
 import dam.a42346.pokedex.databinding.ActivityRegionsBinding
+import dam.a42346.pokedex.domain.DBModule
 import dam.a42346.pokedex.model.PokemonRegion
 import dam.a42346.pokedex.model.mocks.MockData
 
 class RegionsActivity : BottomNavActivity() {
-    val viewModel: RegionsViewModel by viewModels()
+    private val viewModel: RegionsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val regionBinding = binding as ActivityRegionsBinding
         val listView = regionBinding.regionsRecyclerView
         listView.layoutManager = LinearLayoutManager(this)
+
+        viewModel.initViewMode(DBModule.getInstance(this).regionRepository)
         viewModel.regions.observe(this) {
             listView.adapter = it?.let { it1 ->
                 RegionAdapter(

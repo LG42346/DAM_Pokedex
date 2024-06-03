@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "832103990530",
+    "project_id": "dampokedex",
+    "storage_bucket": "dampokedex.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832103990530:android:4fdc2c1c8616dbc277ee1b",
+        "android_client_info": {
+          "package_name": "dam.a42346.pokedex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO3CVsPWD6gPvqm-DU7t9ASv-zorbL5yE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

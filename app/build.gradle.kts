@@ -5,6 +5,8 @@ plugins {
 
     id("org.jetbrains.kotlin.kapt")
     id("kotlin-parcelize")
+
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -44,9 +46,14 @@ android {
 }
 
 dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+
     implementation(libs.androidx.room.runtime)
+    implementation(libs.firebase.common.ktx)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.auth.ktx)
     kapt(libs.androidx.room.compiler)
-    
+
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.moshi)

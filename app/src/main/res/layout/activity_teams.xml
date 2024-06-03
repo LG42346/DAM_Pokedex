@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    tools:context=".ui.RegionsActivity"
+    tools:context=".ui.TeamsActivity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -12,6 +11,14 @@
         android:text="@string/app_bottomtabbar_team_title"
         android:layout_centerInParent="true"
         android:textSize="36sp" />
+
+    <LinearLayout
+        android:id="@+id/programmatic_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_above="@+id/navigation"
+        android:layout_centerInParent="true" />
 
     <include
         android:id="@+id/navigation"

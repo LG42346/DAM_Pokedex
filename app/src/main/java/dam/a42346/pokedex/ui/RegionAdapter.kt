@@ -37,8 +37,8 @@ class RegionAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val region = pkRegionList[position]
         holder.bindView(region)
-        holder.bgImageView.setImageResource(region.bg)
-        holder.startersImageView.setImageResource(region.starters)
+        //holder.bgImageView.setImageResource(region.bg)
+        //holder.startersImageView.setImageResource(region.starters)
         holder.regionTitleTextView.text = region.name
         holder.regionSubtitleTextView.text = buildString {
             append(region.id.toString())
