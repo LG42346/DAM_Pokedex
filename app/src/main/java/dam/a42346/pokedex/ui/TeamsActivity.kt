@@ -1,69 +1,44 @@
 package dam.a42346.pokedex.ui
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import android.util.Log
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dam.a42346.pokedex.R
+import dam.a42346.pokedex.domain.DBModule
+import dam.a42346.pokedex.model.Pokemon
 
-class TeamsActivity : BottomNavActivity() {
-    private lateinit var auth: FirebaseAuth
+class TeamsActivity : BottomNavActivity(), OnPokemonLongClickListener {
+    private lateinit var teamAdapter: PokemonAdapter
+    private lateinit var viewModel: PokemonListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_teams)
+        //setContentView(R.layout.activity_teams)
 
-        auth = Firebase.auth
+        teamAdapter = PokemonAdapter(pokemonList = emptyList(), context = this, listener = this)
+        val layout = findViewById<RecyclerView>(R.id.teamRecyclerView)
+        layout.layoutManager = LinearLayoutManager(this)
+        layout.adapter = teamAdapter
 
-        val layout = findViewById<LinearLayout>(R.id.programmatic_layout)
-
-        val emailEditText = EditText(this).apply {
-            hint = "Email"
-        }
-
-        val passwordEditText = EditText(this).apply {
-            hint = "Password"
-        }
-
-        // Create a login Button
-        val loginButton = Button(this).apply {
-            text = "Login"
-            setOnClickListener {
-                val email = emailEditText.text.toString()
-                val password = passwordEditText.text.toString()
-
-                auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this@TeamsActivity) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(
-                                baseContext, "Authentication succeeded.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            // TODO: Navigate to the next activity
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(
-                                baseContext, "Authentication failed.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
+        viewModel = ViewModelProvider(this)[PokemonListViewModel::class.java]
+        viewModel.initViewMode(DBModule.getInstance(this).pokemonRepository)
+        viewModel.teamList.observe(this) { team ->
+            Log.d("TEAM", "team: $team")
+            team?.let {
+                teamAdapter.pokemonList = it
+                //teamAdapter.notifyDataSetChanged()
+                teamAdapter.notifyItemRangeChanged(0, it.size)
             }
         }
-
-        // Add the EditText fields and Button to the LinearLayout
-        layout.addView(emailEditText)
-        layout.addView(passwordEditText)
-        layout.addView(loginButton)
     }
 
     override val contentViewId: Int
         get() = R.layout.activity_teams
     override val navigationMenuItemId: Int
         get() = R.id.navigation_teams
+
+    override fun onPokemonLongClick(pokemon: Pokemon) {
+    }
 }

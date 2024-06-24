@@ -19,8 +19,8 @@ class RegionAdapter(
 ) : RecyclerView.Adapter<RegionAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val bgImageView = itemView.findViewById<AppCompatImageView>(R.id.regionBgImage)
-        val startersImageView = itemView.findViewById<AppCompatImageView>(R.id.regionStartersImageView)
+        //val bgImageView = itemView.findViewById<AppCompatImageView>(R.id.regionBgImage)
+        //val startersImageView = itemView.findViewById<AppCompatImageView>(R.id.regionStartersImageView)
         val regionTitleTextView = itemView.findViewById<AppCompatTextView>(R.id.regionNameTextView)
         val regionSubtitleTextView = itemView.findViewById<AppCompatTextView>(R.id.regionIdTextView)
 

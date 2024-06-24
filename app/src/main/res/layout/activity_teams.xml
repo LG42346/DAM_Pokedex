@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.TeamsActivity"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_bottomtabbar_team_title"
-        android:layout_centerInParent="true"
-        android:textSize="36sp" />
 
-    <LinearLayout
-        android:id="@+id/programmatic_layout"
+    <RelativeLayout
+        android:id="@+id/teams_relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_above="@+id/navigation"
-        android:layout_centerInParent="true" />
+        android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/navigation"
-        layout="@layout/bottomnavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
-</RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/teamRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+
+        <include
+            layout="@layout/bottomnavigation"
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+</layout>

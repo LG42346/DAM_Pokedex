@@ -16,11 +16,10 @@
             tools:listitem="@layout/item_region" />
 
         <include
-            android:id="@+id/navigation"
             layout="@layout/bottomnavigation"
+            android:id="@+id/navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true" />
-
     </RelativeLayout>
 </layout>

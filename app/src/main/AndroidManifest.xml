@@ -8,43 +8,23 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_teams"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/charmander"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pokedex"
         tools:targetApi="31">
+        <activity android:name=".ui.PokemonDetailActivity" />
+        <activity android:name=".ui.PokemonListActivity"/>
+        <activity android:name=".ui.TeamsActivity" />
+        <activity android:name=".ui.RegionsActivity"/>
         <activity
-            android:name=".ui.PokemonDetailActivity"
-            android:exported="false"
-            android:label="@string/title_activity_pokemon_detail" />
-        <!--
-        <activity
-            android:name=".ui.BottomNavActivity"
-            android:exported="false"
-            android:label="@string/title_activity_bottom_nav" />
-        -->
-        <activity
-            android:name=".ui.PokemonListActivity"
-            android:exported="false"
-            android:label="@string/title_activity_pokemon_list" />
-        <activity
-            android:name=".ui.TeamsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_team" />
-        <activity
-            android:name=".ui.RegionsActivity"
-            android:exported="true"
-            android:label="@string/title_activity_regions">
+            android:name=".ui.MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.MainActivity"
-            android:exported="true" />
     </application>
-
 </manifest>

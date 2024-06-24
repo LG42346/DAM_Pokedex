@@ -6,12 +6,12 @@ import dam.a42346.pokedex.data.PokemonRepository
 import dam.a42346.pokedex.data.RegionRepository
 import dam.a42346.pokedex.model.network.NetworkModule
 import dam.a42346.pokedex.model.network.PokemonApi
-class DBModule(private val context:Context) {
+class DBModule(context:Context) {
 
-    val pokemonClient: PokemonApi
-    val regionRepository : RegionRepository
-    val pokemonDBManager : PokemonDatabase
-    var pokemonRepository: PokemonRepository
+    private val pokemonClient: PokemonApi = NetworkModule.initPokemonRemoteService()
+    private val pokemonDBManager : PokemonDatabase = PokemonDatabase.getInstance(context)
+    val regionRepository : RegionRepository = RegionRepository(pokemonClient,pokemonDBManager.regionDao())
+    var pokemonRepository: PokemonRepository = PokemonRepository(pokemonClient,pokemonDBManager.pokemonDao())
 
     companion object {
         // For Singleton instantiation
@@ -21,14 +21,8 @@ class DBModule(private val context:Context) {
             synchronized ( this ) {
                 return DBModule(context)
             }
-            return instance!!
+            //return instance!!
         }
     }
 
-    init {
-        pokemonClient = NetworkModule.initPokemonRemoteService()
-        pokemonDBManager = PokemonDatabase.getInstance(context)
-        regionRepository = RegionRepository(pokemonClient,pokemonDBManager.regionDao())
-        pokemonRepository = PokemonRepository(pokemonClient,pokemonDBManager.pokemonDao())
-    }
 }

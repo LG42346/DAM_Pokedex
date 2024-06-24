@@ -10,7 +10,6 @@ import dam.a42346.pokedex.model.network.PokemonApi
 
 class PokemonRepository(private val pokemonApi: PokemonApi,
                         private val pokemonDao: PokemonDao) {
-
     suspend fun getPokemonsByRegion(regionId : Int): LiveData<List<Pokemon>> {
         try {
             val regionWithPokemons = pokemonDao.getPokemonByRegion(regionId)
@@ -23,7 +22,7 @@ class PokemonRepository(private val pokemonApi: PokemonApi,
                     val pkImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                             "/sprites/pokemon/other/official-artwork/${pkId}.png"
                     Pokemon(pkIdInt, pkName, pkImageUrl, regionId = regionId)
-                }
+                }.sortedBy { it.id }
                 savePokemonsinDB(pokemons)
                 return MutableLiveData(pokemons)
             } else {

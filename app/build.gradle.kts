@@ -46,12 +46,15 @@ android {
 }
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation(libs.gson)
 
-    implementation(libs.androidx.room.runtime)
+    implementation(libs.firebase.bom)
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.database.ktx)
     implementation(libs.firebase.auth.ktx)
+
+    implementation(libs.androidx.room.runtime)
+
     kapt(libs.androidx.room.compiler)
 
     implementation(libs.retrofit)

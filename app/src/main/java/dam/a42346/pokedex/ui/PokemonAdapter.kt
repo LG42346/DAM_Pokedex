@@ -22,7 +22,8 @@ import dam.a42346.pokedex.model.Pokemon
 
 class PokemonAdapter(
     var pokemonList: List<Pokemon>,
-    private val context: Context
+    private val context: Context,
+    private val listener: OnPokemonLongClickListener
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -78,6 +79,10 @@ class PokemonAdapter(
             val intent = Intent(context, PokemonDetailActivity::class.java)
             intent.putExtra("pokemon", pokemon)
             context.startActivity(intent)
+        }
+        holder.itemView.setOnLongClickListener {
+            listener.onPokemonLongClick(pokemon)
+            true
         }
     }
 

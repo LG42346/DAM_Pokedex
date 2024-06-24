@@ -5,6 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <androidx.recyclerview.widget.RecyclerView
         android:scrollbarStyle="outsideOverlay"
         android:id="@+id/pksRecyclerView"
@@ -17,4 +18,11 @@
         android:fadeScrollbars="false"
         app:layoutManager="GridLayoutManager"
         app:spanCount="2"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/teamRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/pksRecyclerView" />
 </RelativeLayout>

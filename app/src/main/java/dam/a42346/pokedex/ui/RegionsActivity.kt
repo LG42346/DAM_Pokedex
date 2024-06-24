@@ -1,16 +1,11 @@
 package dam.a42346.pokedex.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import dam.a42346.pokedex.R
 import dam.a42346.pokedex.databinding.ActivityRegionsBinding
 import dam.a42346.pokedex.domain.DBModule
-import dam.a42346.pokedex.model.PokemonRegion
-import dam.a42346.pokedex.model.mocks.MockData
 
 class RegionsActivity : BottomNavActivity() {
     private val viewModel: RegionsViewModel by viewModels()

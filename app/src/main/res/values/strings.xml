@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" tools:ignore="Typos">DAM-Pokedex-Part1</string>
+    <string name="app_name" tools:ignore="Typos">POKEDEX</string>
 
     <string name="app_bottomtabbar_regions_title">Regions</string>
     <string name="app_bottomtabbar_team_title">Teams</string>
@@ -46,4 +46,5 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_pokemon_list">PokemonListActivity</string>
     <string name="title_activity_pokemon_detail">PokemonDetailActivity</string>
+    <string name="login">Login</string>
 </resources>
